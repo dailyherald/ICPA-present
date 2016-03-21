@@ -1,0 +1,10 @@
+{
+"type": "FeatureCollection",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+                                                                                
+"features": [
+{ "type": "Feature", "properties": { "Intersection": "Michigan and Lake", "Years": "Total", "Total_acc_before": 12.5, "Total_acc_after": 10, "Total_chg": "Decrease", "Acc_Injuries_before": 6.5, "Acc_Injuries_after": 8.5, "Inj_chg": "Same\/Increase", "Lat": 41.885733, "Long": -87.624533 }, "geometry": { "type": "Point", "coordinates": [ -87.624533, 41.885733 ] } },
+{ "type": "Feature", "properties": { "Intersection": "Clark and Randolph", "Years": "Total", "Total_acc_before": 6.0, "Total_acc_after": 5, "Total_chg": "Decrease", "Acc_Injuries_before": 4.0, "Acc_Injuries_after": 5.0, "Inj_chg": "Same\/Increase", "Lat": 41.88445134, "Long": -87.632478 }, "geometry": { "type": "Point", "coordinates": [ -87.632478, 41.88445134 ] } },
+{ "type": "Feature", "properties": { "Intersection": "State and Washington", "Years": "Total", "Total_acc_before": 9.0, "Total_acc_after": 10, "Total_chg": "Same\/Increase", "Acc_Injuries_before": 9.0, "Acc_Injuries_after": 8.0, "Inj_chg": "Decrease", "Lat": 41.883233, "Long": -87.627837 }, "geometry": { "type": "Point", "coordinates": [ -87.627837, 41.883233 ] } }
+]
+}

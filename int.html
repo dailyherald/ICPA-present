@@ -1,0 +1,95 @@
+<!DOCTYPE HTML>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width" />
+
+	<title>
+		Red light intersections
+	</title>
+
+<!-- __________STYLES___________ -->
+	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+	<style> #map{ height: 375px; } </style>
+
+<!-- __________SCRIPTS__________ -->
+	<!-- jquery is what a lot of the web is based on -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+	<!-- mapping -->
+	<script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+
+</head>
+
+<body>
+
+<h1><strong>Red light cameras</strong></h1>
+<div id="map"></div>
+
+
+<script>
+
+// SEE THIS GREYED-OUT TEXT? It's a note, the browser ignores all this
+// Two slashes for notes in a script. In HTML, it's <!-- note -->
+// But web developers use them (or should) to share knowledge about their code
+// in case they get hit by a bus and someone else has to change or fix their work
+
+	// Tells what kind of background map to use
+	// We're using mapquest layers here because they're open source
+
+    var mapquestLayer = new L.TileLayer('http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png', {
+        maxZoom: 18,
+        attribution: 'Data, imagery and map information provided by <a href="http://open.mapquest.co.uk" target="_blank">MapQuest</a>,<a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> and contributors.',
+        subdomains: ['otile1','otile2','otile3','otile4']
+    });
+	// Other places you can get base layers are CartoDB or MapBox, even google if you get an API key
+
+	// Tells where to put the map on the page
+	var map = L.map('map');
+
+
+	//-------------------------------------------------------------------------
+	// HERE'S WHAT YOU WOULD DO IF YOU HAD A LOT OF LOCATIONS IN A GEOJSON FILE 
+
+
+	// Loads a geojson file that has a bunch of locations to put on a map
+	$.getJSON("int.geojson", function(data) {
+
+		// Takes that geojson and gives it to Leaglet - L.geoJson( data 
+	    var geojson = L.geoJson( data, {
+
+	    	// For each item in the geojson, bind a popup window with the rank and name inside it
+	    	onEachFeature: function (feature, layer) {
+	    		layer.bindPopup(
+	    			'<strong>' + feature.properties.Intersection + '</strong><br>' + feature.properties.Inj_chg
+	    		);
+	    	}
+	    });
+	 
+		// Sets the view of the map (what you see at first)
+		map.setView(new L.LatLng(41.885733,-87.624533),14);
+
+		// Adds the background map to the page
+ 	    map.addLayer(mapquestLayer);
+
+		// Adds the geojson to the map
+		geojson.addTo(map);
+
+	});
+	//------------------------------------------------------------------
+	// HERE'S WHAT YOU WOULD USE IF YOU JUST WANTED ONE LOCATION
+
+	// Sets the view of the map (what you see at first)
+	//map.setView(new L.LatLng(41.885733,-87.624533),14);
+
+	// Add a single marker
+	//var marker = L.marker([41.885733,-87.624533]).addTo(map);
+
+	//Add a pop up
+	//marker.bindPopup("<b>Michigan and Lake</b><br>Same/Increase");
+
+
+</script>
+
+</body>
+
+
+
